@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: hello-config
 data:
-  DB_HOST: "postgresql"
-  DB_PORT: "5432"
-  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
-  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  DB_HOST: {{ (include "postgresql.fullname" .) }}
+  DB_PORT: {{ .Values.postgresql.service.port | toYaml | indent 4 }}
+  DB_NAME: {{ .Values.postgresql.postgresqlDatabase | toYaml | indent 4 }}
+  DB_USER: {{ .Values.postgresql.postgresqlUsername | toYaml | indent 4 }}
 ---
 apiVersion: v1
 kind: Secret
@@ -14,4 +14,4 @@ metadata:
   name: hello-secret
 type: Opaque
 data:
-  DB_PASSWORD: {{ printf .Values.postgresql.postgresqlPassword  | b64enc | quote }}
+  DB_PASSWORD: {{  printf "%s" .Values.postgresql.postgresqlPassword  | b64enc | quote }}

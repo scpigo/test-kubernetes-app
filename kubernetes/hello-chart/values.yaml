@@ -3,7 +3,6 @@ replicaCount: 2
 image:
   repository: scpigo/testk8sapp:latest
 
-
 service:
   type: NodePort
   port: 9000

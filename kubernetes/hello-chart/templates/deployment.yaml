@@ -6,14 +6,14 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hello-py-app
+      app: hello-php-app
   template:
     metadata:
       labels:
-        app: hello-py-app
+        app: hello-php-app
     spec:
       containers:
-        - name: hello-py
+        - name: hello-php
           image: {{ .Values.image.repository }}
 
           env:

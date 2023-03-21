@@ -18,8 +18,8 @@ spec:
             - sh
             - "-c"
             - |
-              psql postgres://myuser:passwd@postgres/myapp <<'EOF'
+              psql postgres://myuser:passwd@myapp-postgresql/myapp
                 create table students (id serial primary key, name varchar);
-                insert into students (id, name) values (1, 'Konstantin');
+                insert into students (name) values ('Konstantin');
               EOF
   backoffLimit: 0

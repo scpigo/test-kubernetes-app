@@ -4,7 +4,7 @@ metadata:
   name: hello-service
 spec:
   selector:
-    app: hello-py-app
+    app: hello-php-app
   ports:
     - protocol: TCP
       port: {{ .Values.service.port }}

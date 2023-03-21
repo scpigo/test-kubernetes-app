@@ -15,4 +15,3 @@ dependencies:
     condition: postgresql.enabled
     tags:
       - myapp-database
-
