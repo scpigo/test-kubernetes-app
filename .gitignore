@@ -1,2 +1,4 @@
 .git
 .idea
+./kubernetes/hello-chart/charts
+./kubernetes/hello-chart/Chart.lock
