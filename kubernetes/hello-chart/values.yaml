@@ -1,0 +1,17 @@
+replicaCount: 2
+
+image:
+  repository: scpigo/testk8sapp:latest
+
+
+service:
+  type: NodePort
+  port: 9000
+
+postgresql:
+  enabled: true
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  service:
+    port: "5432"
