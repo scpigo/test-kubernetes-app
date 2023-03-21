@@ -1,17 +1,18 @@
 <?php
 /** @var $conn */
 
-require_once __DIR__.'/./../db.php';
+require __DIR__.'/./../db.php';
 
-$result = pg_query($conn, "SELECT * FROM students");
-
-if (!$result) {
+try {
+    $result = pg_query($conn, "SELECT * FROM students");
+} catch (Exception $e) {
     http_response_code(500);
 
     $data = [
         "status" => "error",
-        "message" => "Произошла ошибка при получении данных"
+        "message" => $e->getMessage()
     ];
+
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($data);
 }

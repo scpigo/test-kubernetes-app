@@ -2,19 +2,20 @@
 /** @var $conn */
 /** @var integer $id */
 
-require_once __DIR__.'/./../db.php';
+require __DIR__.'/./../db.php';
 
 $query = "DELETE FROM students WHERE id = ".$id;
 
-$result = pg_query($conn, $query);
-
-if (!$result) {
+try {
+    $result = pg_query($conn, $query);
+} catch (Exception $e) {
     http_response_code(500);
 
     $data = [
         "status" => "error",
-        "message" => "Произошла ошибка при удалении записи"
+        "message" => $e->getMessage()
     ];
+
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($data);
 }
@@ -22,5 +23,5 @@ if (!$result) {
 ?>
 
 <script type="text/javascript">
-    window.location.href = '/';
+    window.location.href = '/crud/read';
 </script>

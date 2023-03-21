@@ -1,21 +1,20 @@
 <?php
 /** @var $conn */
 
-require_once __DIR__.'/./../db.php';
+require __DIR__.'/./../db.php';
 
 $name = $_POST['name'];
 
-$query = "INSERT INTO students (name) VALUES ('".$name."')";
-
-$result = pg_query($conn, $query);
-
-if (!$result) {
+try {
+    $result = pg_insert($conn, 'students', ['name' => $name]);
+} catch (Exception $e) {
     http_response_code(500);
 
     $data = [
         "status" => "error",
-        "message" => "Произошла ошибка при создании записи"
+        "message" => $e->getMessage()
     ];
+
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($data);
 }
@@ -23,5 +22,5 @@ if (!$result) {
 ?>
 
 <script type="text/javascript">
-    window.location.href = '/';
+    window.location.href = '/crud/read';
 </script>
