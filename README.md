@@ -1,1 +1,1 @@
-тестовый проект для изучения kubernetesgit branch -M
+тестовый проект для изучения kubernetes
